@@ -91,7 +91,7 @@ RUNTIME_TOKEN=token2                    # Separate runtime token (if different)
 - `unuse_notebook` — Disconnect from notebook and release resources
 - `read_notebook` — Read all cells (brief or detailed format)
 
-### Cell Operations
+### Cell Operations (Basic)
 - `read_cell` — Read full content (metadata, source, outputs) of one cell
 - `insert_cell` — Insert new code/markdown cell at position
 - `delete_cell` — Delete cell at index
@@ -102,6 +102,75 @@ RUNTIME_TOKEN=token2                    # Separate runtime token (if different)
 - `insert_execute_code_cell` — Insert + execute in one step
 - `execute_code` — Execute code directly in kernel (supports magic commands)
 
+### Advanced Features (Extended)
+
+**Cell History & Tracking**
+- `diff_cell` — Compare cell versions and show edit history
+- `rollback_cell` — Restore cell to previous version
+
+**Smart Search & Analysis**
+- `find_cells` — Search cells by pattern, type, errors, or outputs
+- `get_cell_dependencies` — Analyze variable dependencies between cells
+- `get_affected_cells` — Find cells affected by changes
+
+**Batch Operations**
+- `execute_cells` — Execute multiple cells in sequence
+- `batch_edit_cells` — Edit multiple cells at once
+
+**Output Filtering**
+- `get_cell_output` — Get specific output types (images, HTML, etc.)
+- `get_dataframe_output` — Extract pandas DataFrames from outputs
+
+**Annotations & Flags**
+- `annotate_cell` — Add notes/TODOs to cells
+- `get_cell_annotations` — Get cell annotations
+- `flag_cell` — Mark cells for review
+- `list_flagged_cells` — List all flagged cells
+
+**Execution Analytics**
+- `get_cell_execution_time` — Get cell execution duration
+- `get_slowest_cells` — Find performance bottlenecks
+- `get_cell_memory_usage` — Get memory usage per cell
+
+**Smart Insertion**
+- `insert_cell_after_imports` — Insert after import statements
+- `insert_cell_before_plots` — Insert before visualizations
+- `insert_cleanup_cell` — Add cleanup code for temp variables
+
+**Cell Templates**
+- `insert_dataframe_inspect_cell` — Add DataFrame inspection code
+- `insert_plot_cell` — Add plotting code (line/bar/scatter)
+- `insert_error_handling_cell` — Wrap cell in try/except
+
+**Kernel Inspection**
+- `list_kernel_variables` — List all kernel variables
+- `get_variable_info` — Get variable type, size, shape
+- `get_variable_value` — Get variable value
+- `check_cell_variables` — Check for undefined variables
+
+**Validation & Testing**
+- `validate_notebook` — Check for errors, undefined vars, execution issues
+- `check_reproducibility` — Test if notebook runs cleanly from top to bottom
+- `compare_cell_outputs` — Compare outputs between runs
+- `save_cell_output_baseline` — Save output for regression testing
+- `compare_with_baseline` — Compare current output with baseline
+
+**Magic Commands**
+- `timeit_cell` — Execute cell with %%timeit
+- `profile_cell` — Execute cell with %%prun profiler
+- `debug_cell` — Execute cell in debug mode
+
+**Refactoring**
+- `extract_to_function` — Extract cell code into reusable function
+- `merge_cells` — Merge multiple cells into one
+- `split_cell` — Split cell at specific line
+
+**Section Management**
+- `list_sections` — List all markdown section headers
+- `get_section_cells` — Get cells belonging to a section
+- `execute_section` — Execute all cells in a section
+- `insert_section_header` — Insert markdown section header
+
 ### JupyterLab Integration (when enabled)
 - `notebook_run-all-cells` — Execute all cells sequentially
 - `notebook_get-selected-cell` — Get currently selected cell info
@@ -109,6 +178,11 @@ RUNTIME_TOKEN=token2                    # Separate runtime token (if different)
 ## Prompts
 
 - `jupyter-cite` — Cite specific cells from notebook (like @ in IDEs)
+
+## Tool Documentation
+
+- **Basic Tools:** See [tools.md](./references/tools.md) for complete API reference
+- **Advanced Features:** See [advanced-features.md](./references/advanced-features.md) for extended tools (40+ additional tools)
 
 ## Usage Pattern
 
@@ -172,6 +246,11 @@ Use these tools:
 3. **Execute to verify** — Run `execute_cell()` after changes to catch errors
 4. **Context awareness** — Read surrounding cells to understand data flow
 5. **Multimodal outputs** — Check for images/plots in cell outputs
+6. **Use advanced features** — Leverage `find_cells()`, `validate_notebook()`, `check_cell_variables()` for smart workflows
+7. **Track dependencies** — Use `get_cell_dependencies()` before refactoring
+8. **Profile performance** — Use `get_slowest_cells()` and `timeit_cell()` to optimize
+9. **Validate before commit** — Run `check_reproducibility()` to ensure clean execution
+10. **Annotate complex logic** — Use `annotate_cell()` for future reference
 
 ### For Prompts
 
@@ -179,12 +258,16 @@ Use these tools:
 2. **Provide context** — Mention installed packages, dataset fields, current directory
 3. **Set expectations** — Clarify what "done" looks like
 4. **Iterate** — Let agent read → edit → execute → verify in loops
+5. **Use sections** — Reference notebook sections for large notebooks
+6. **Request validation** — Ask agent to run `validate_notebook()` at the end
 
 ### For Error Handling
 
 - Always set `timeout` on `execute_cell()` (default 30s)
 - Check `success` field in execution results
 - Parse `error.ename`, `error.evalue`, `error.traceback` for debugging
+- Use `check_cell_variables()` to catch undefined variable errors early
+- Flag problematic cells with `flag_cell()` for review
 
 ## Security Notes
 
@@ -254,6 +337,6 @@ uvx jupyter-mcp-server@latest
 
 ---
 
-**Status:** Production-ready  
+**Status:** Production-ready (60+ tools available)  
 **Maintainer:** Datalayer  
 **Last Updated:** 2026-06-12

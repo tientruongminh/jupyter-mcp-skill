@@ -2,19 +2,27 @@
 
 **Version:** 1.0.0  
 **Created:** 2026-06-12  
-**Status:** Production-ready  
+**Status:** Production-ready (60+ tools)  
 **Provider:** datalayer/jupyter-mcp-server
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub](https://img.shields.io/badge/GitHub-jupyter--mcp--skill-blue)](https://github.com/tientruongminh/jupyter-mcp-skill)
 
 ## Overview
 
 Control Jupyter Notebooks through Model Context Protocol (MCP), enabling AI agents to read, edit, and execute notebook cells programmatically.
 
+**60+ tools available:** Basic CRUD operations + advanced features for search, analytics, validation, refactoring, and more.
+
 ## Quick Links
 
 - [SKILL.md](./SKILL.md) — Full documentation
-- [examples.md](./references/examples.md) — Usage examples
-- [tools.md](./references/tools.md) — Complete tools reference
+- [examples.md](./references/examples.md) — 10 usage examples
+- [tools.md](./references/tools.md) — Basic tools reference (20 tools)
+- [advanced-features.md](./references/advanced-features.md) — Extended tools reference (40+ tools)
 - [test-connection.sh](./scripts/test-connection.sh) — Connection test script
+- [CONTRIBUTING.md](./CONTRIBUTING.md) — How to contribute
+- [CHANGELOG.md](./CHANGELOG.md) — Version history
 
 ## Quick Start
 
@@ -48,32 +56,83 @@ JUPYTER_URL=http://localhost:8888 JUPYTER_TOKEN=test123 bash scripts/test-connec
 
 ## Key Features
 
+### Basic Operations (20 tools)
 - ⚡ Real-time notebook control
 - 🔁 Smart cell execution with error feedback
 - 🧠 Context-aware operations
 - 📊 Multimodal output support (images, plots)
 - 📚 Multi-notebook management
 - 🎨 JupyterLab integration
-- 🤝 Works with Cursor, Codex, Claude Desktop, Windsurf
+
+### Advanced Features (40+ tools)
+- 🔍 **Smart Search**: Find cells by pattern, errors, outputs, variables
+- 📈 **Analytics**: Execution time, memory usage, performance profiling
+- ✅ **Validation**: Check reproducibility, undefined variables, execution order
+- 🔄 **Refactoring**: Extract functions, merge/split cells, batch edits
+- 📝 **Annotations**: Flag cells, add TODOs, track changes
+- 🧪 **Testing**: Output baselines, regression testing, comparison
+- 🎯 **Section Management**: Work with markdown sections
+- 🛠️ **Templates**: Auto-generate DataFrame inspection, plots, error handling
+- 🔬 **Kernel Inspection**: List variables, check types, analyze dependencies
+- ⚙️ **Magic Commands**: %%timeit, %%prun, %%debug
+
+### Agent Compatibility
+- 🤝 Works with Cursor, Codex, Claude Desktop, Windsurf, Claude Code
+- 🚀 OpenClaw integration via sessions_spawn
+- 🔌 Standard MCP protocol
 
 ## Main Tools
 
-### Notebook Lifecycle
+### Basic Operations
+**Notebook Lifecycle**
 - `use_notebook` — Open/create/switch notebooks
 - `list_notebooks` — See all available notebooks
 - `read_notebook` — Read all cells
 
-### Cell Operations
+**Cell Operations**
 - `read_cell` — Read specific cell
 - `insert_cell` — Add new cell
 - `edit_cell_source` — Surgical edits
 - `execute_cell` — Run cell and get outputs
 - `insert_execute_code_cell` — Add + run in one step
 
-### File & Kernel
+**File & Kernel**
 - `list_files` — Browse Jupyter filesystem
 - `list_kernels` — See available kernels
 - `restart_notebook` — Restart kernel
+
+### Advanced Features
+**Smart Analysis**
+- `find_cells` — Search by pattern/errors/outputs
+- `get_cell_dependencies` — Analyze variable flow
+- `validate_notebook` — Check for issues
+- `check_reproducibility` — Test clean execution
+
+**Performance & Debugging**
+- `get_slowest_cells` — Find bottlenecks
+- `timeit_cell` — Benchmark execution
+- `profile_cell` — Profile performance
+- `get_cell_memory_usage` — Memory analysis
+
+**Productivity**
+- `annotate_cell` — Add notes/TODOs
+- `flag_cell` — Mark for review
+- `extract_to_function` — Refactor to functions
+- `batch_edit_cells` — Edit multiple cells
+- `execute_section` — Run entire sections
+
+**Templates & Helpers**
+- `insert_dataframe_inspect_cell` — Auto DataFrame inspection
+- `insert_plot_cell` — Auto visualization code
+- `insert_cell_after_imports` — Smart positioning
+- `insert_error_handling_cell` — Wrap in try/except
+
+**Testing & Validation**
+- `compare_cell_outputs` — Compare runs
+- `save_cell_output_baseline` — Regression testing
+- `check_cell_variables` — Catch undefined vars
+
+See [advanced-features.md](./references/advanced-features.md) for complete documentation.
 
 ## Usage with OpenClaw
 
